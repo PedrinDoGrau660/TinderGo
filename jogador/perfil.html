@@ -4,95 +4,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon_io/favicon-32x32.png">
-  <title>Criação de Usuário</title>
-
+  <title>Criar Jogador</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
-      font-family: Arial, sans-serif;
-
-      background-size: cover;
+      font-family: 'Roboto', sans-serif;
+      background: #f5f7fa;
       margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      padding: 20px;
     }
 
     .container {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 30px;
-      border-radius: 10px;
-      width: 350px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       position: relative;
     }
 
     h1 {
-      text-align: center;
       margin-bottom: 20px;
+      text-align: center;
     }
 
-    .profile-icon {
-      cursor: pointer;
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 20px auto;
-      position: relative;
-    }
-
-    .profile-icon .head {
-      width: 60px;
-      height: 60px;
-      background: gray;
-      border-radius: 50%;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .profile-icon .body {
-      width: 90px;
-      height: 50px;
-      background: gray;
-      border-radius: 50% / 50%;
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    form label {
-      font-weight: bold;
+    label {
       display: block;
+      font-weight: 600;
       margin-top: 15px;
+      margin-bottom: 5px;
     }
 
-    form input {
+    input[type="text"],
+    input[type="url"],
+    input[type="file"],
+    select {
       width: 100%;
       padding: 8px;
-      margin-top: 5px;
-      box-sizing: border-box;
+      border-radius: 6px;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      font-size: 1rem;
+      box-sizing: border-box;
+      margin-bottom: 10px;
     }
 
     button {
       margin-top: 20px;
       width: 100%;
-      padding: 10px;
-      background-color: #1E90FF;
-      border: none;
+      background-color: #3b82f6;
       color: white;
-      font-size: 16px;
-      border-radius: 4px;
+      border: none;
+      padding: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 8px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
-      background-color: #1C86EE;
+      background-color: #2563eb;
+    }
+
+    pre {
+      background: #eee;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .profile-icon {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 20px auto;
+      cursor: pointer;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .profile-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .modal {
@@ -101,111 +103,170 @@
       z-index: 9999;
       left: 0;
       top: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
       justify-content: center;
       align-items: center;
+      user-select: none;
     }
 
     .modal-content {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      width: 300px;
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px 40px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
       text-align: center;
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    .modal-content p {
+      font-weight: 700;
+      margin-bottom: 25px;
+      font-size: 1.3rem;
     }
 
     .modal-content button {
-      margin: 10px 5px 0 5px;
-      width: auto;
-      padding: 8px 15px;
-      background-color: #f44336;
+      padding: 12px 25px;
+      margin: 8px 10px;
       border: none;
+      border-radius: 25px;
       color: white;
-      border-radius: 4px;
+      font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
-    }
-
-    .modal-content button.cancel-btn {
-      background-color: gray;
-    }
-
-    .back-arrow {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      font-size: 22px;
-      color: #1C86EE;
-      text-decoration: none;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 6px 10px;
-      border-radius: 50%;
-      transition: background 0.3s;
-    }
-
-    .back-arrow:hover {
-      background: rgba(230, 230, 230, 0.9);
+      transition: background-color 0.3s ease;
     }
   </style>
 </head>
 
 <body>
-
   <div class="container">
-    <a href="pagina.html" class="back-arrow" title="Voltar">&#8592;</a>
-    <h1>Crie o usuário</h1>
-
+     <a href="pagina.html" class="back-arrow" title="Voltar">&#8592;</a>
+    <!-- Avatar -->
     <div class="profile-icon" onclick="openModal()">
-      <div class="head"></div>
-      <div class="body"></div>
+      <img id="profileImage" src="https://via.placeholder.com/110" alt="Foto do jogador">
     </div>
 
-    <form id="userForm">
-      <label for="username">Usuário</label>
-      <input type="text" id="username" name="username" placeholder="Digite seu usuário" required />
+    <!-- Modal -->
+    <div id="photoModal" class="modal">
+      <div class="modal-content">
+        <p><strong>Alterar foto do perfil</strong></p>
+        <input type="file" id="fotoFile" accept="image/*">
+        <br><br>
+        <button class="remove-btn" style="background:red" onclick="removePhoto()">Remover foto atual</button>
+        <button class="cancel-btn" style="background:gray" onclick="closeModal()">Cancelar</button>
+      </div>
+    </div>
 
-      <label for="idade">Idade</label>
-      <input type="number" id="idade" name="idade" placeholder="Digite sua idade" required />
+    <h1>Criar Novo Jogador</h1>
+    <form id="criar-jogador-form">
+      <label for="nome">Nome do Jogador</label>
+      <input type="text" id="nome" required>
 
-      <label for="cidade">Cidade</label>
-      <input type="text" id="cidade" name="cidade" placeholder="Local" required />
+      <label for="posicao">Posição</label>
+      <select id="posicao" required>
+        <option value="">Selecione a posição</option>
+        <option value="Atacante">Atacante</option>
+        <option value="Meio-campista">Meio-campista</option>
+        <option value="Zagueiro">Zagueiro</option>
+        <option value="Goleiro">Goleiro</option>
+      </select>
 
-      <button type="button" onclick="salvarUsuario()">Salvar</button>
+      <label for="times">Times (separados por vírgula)</label>
+      <input type="text" id="times" placeholder="Ex: Atlético Maneiro, Shaktar Dos Lek's">
+
+      <label>Foto do Jogador</label>
+      <input type="file" id="fotoInput" accept="image/*">
+
+      <label>Mapa de Calor</label>
+      <input type="file" id="mapaCalorInput" accept="image/*">
+
+      <label>Atributos (Radar)</label>
+      <input type="file" id="atributosInput" accept="image/*">
+
+      <button type="submit">Criar Jogador</button>
     </form>
-  </div>
 
-  <div id="photoModal" class="modal" onclick="closeModal(event)">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <p><strong>Alterar foto do perfil</strong></p>
-      <button class="upload-btn" onclick="alert('Carregar foto')">Carregar foto</button>
-      <button class="remove-btn" onclick="alert('Remover foto atual')">Remover foto atual</button>
-      <button class="cancel-btn" onclick="closeModal()">Cancelar</button>
-    </div>
+    <div id="resultado"></div>
   </div>
 
   <script>
-    function openModal() {
-      document.getElementById("photoModal").style.display = "flex";
+    const form = document.getElementById('criar-jogador-form');
+    const resultado = document.getElementById('resultado');
+    const photoModal = document.getElementById('photoModal');
+    const profileImage = document.getElementById('profileImage');
+    const fotoFileInput = document.getElementById('fotoFile');
+
+    function openModal() { photoModal.style.display = "flex"; }
+    function closeModal() { photoModal.style.display = "none"; }
+
+    window.onclick = function(event) {
+      if (event.target === photoModal) closeModal();
     }
 
-    function closeModal(event) {
-      if (!event || event.target === document.getElementById("photoModal")) {
-        document.getElementById("photoModal").style.display = "none";
+    fotoFileInput.addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) { profileImage.src = e.target.result; }
+        reader.readAsDataURL(this.files[0]);
       }
+      closeModal();
+    });
+
+    function removePhoto() {
+      profileImage.src = "https://via.placeholder.com/110";
+      fotoFileInput.value = "";
+      closeModal();
     }
 
-    function salvarUsuario() {
-      const form = document.getElementById('userForm');
-      if (form.checkValidity()) {
-        alert("Usuário salvo!");
-        window.location.href = "pagina.html"; // altere o caminho conforme necessário
-      } else {
-        form.reportValidity();
+    function getImageOrDefault(inputId, defaultUrl) {
+      const fileInput = document.getElementById(inputId);
+      if (fileInput.files && fileInput.files[0]) {
+        return new Promise(resolve => {
+          const reader = new FileReader();
+          reader.onload = e => resolve(e.target.result);
+          reader.readAsDataURL(fileInput.files[0]);
+        });
       }
+      return Promise.resolve(defaultUrl);
     }
+
+    form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const nome = document.getElementById('nome').value.trim();
+  const posicao = document.getElementById('posicao').value;
+  const timesRaw = document.getElementById('times').value.trim();
+
+  if (!nome || !posicao) {
+    alert('Por favor, preencha os campos obrigatórios!');
+    return;
+  }
+
+  const foto = await getImageOrDefault('fotoInput', profileImage.src);
+  const mapaCalor = await getImageOrDefault('mapaCalorInput', 'img/mapa_default.png');
+  const atributos = await getImageOrDefault('atributosInput', 'img/atributos_default.png');
+
+  const times = timesRaw ? timesRaw.split(',').map(t => t.trim()) : [];
+
+  const novoJogador = { nome, posicao, times, foto, mapaCalor, atributos };
+
+  // Salvar no localStorage
+  localStorage.setItem('jogador', JSON.stringify(novoJogador));
+
+  // Mostrar mensagem limpa
+  resultado.innerHTML = `<h2>Jogador "${novoJogador.nome}" criado com sucesso!</h2>
+  <p>Posição: ${novoJogador.posicao}</p>
+  <p>Times: ${novoJogador.times.join(', ') || 'Nenhum'}</p>`;
+
+  alert("Jogador salvo! Vá para a página de perfil para ver.");
+  form.reset();
+  profileImage.src = "https://via.placeholder.com/110";
+});
   </script>
-
 </body>
-
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon_io/favicon-32x32.png">
   <title>Meu Perfil</title>
   <style>
     body {
@@ -24,21 +24,16 @@
     .profile-header {
       display: flex;
       align-items: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      justify-content: center;
+      gap: 15px;
     }
 
     .avatar {
       width: 60px;
       height: 60px;
       border-radius: 50%;
-
       background-size: cover;
-      margin-right: 15px;
-    }
-
-    .username {
-      font-size: 22px;
-      font-weight: bold;
     }
 
     .video-card {
@@ -108,10 +103,6 @@
       color: #666;
     }
 
-    .no-comments {
-      font-style: italic;
-    }
-
     .back-arrow {
       position: fixed;
       top: 15px;
@@ -138,23 +129,97 @@
       }
     }
 
+    /* Perfil do jogador */
+    .player-profile {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+    .player-profile img {
+      width: 120px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 2px solid #1E90FF;
+    }
+
+    .save-btn {
+      display: block;
+      margin: 10px auto 30px auto;
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .save-btn:hover { background-color: #2563eb; }
   </style>
 </head>
 <body>
-  <br>
-  <br>
- <br>
-  <h1>Meus Videos</h1>
-<a href="pagina.html" class="back-arrow" title="Voltar">&#8592;</a>
+  <h1>Meu Perfil</h1>
+  <a href="pagina.html" class="back-arrow" title="Voltar">&#8592;</a>
+
+  <div class="player-profile" id="playerProfile">
+    <!-- Foto, mapa de calor e radar serão carregados aqui -->
+  </div>
+
+  
 
   <div id="videosContainer">
     <p>Nenhum vídeo enviado ainda.</p>
   </div>
 
   <script>
+    // Carregar jogador do localStorage
+    const jogador = JSON.parse(localStorage.getItem('jogador'));
+    const profileDiv = document.getElementById('playerProfile');
+    if (jogador) {
+      profileDiv.innerHTML = `
+        <img src="${jogador.foto}" alt="Foto do jogador" title="Foto do jogador">
+        <img src="${jogador.mapaCalor}" alt="Mapa de calor" title="Mapa de calor">
+        <img src="${jogador.atributos}" alt="Atributos" title="Atributos">
+      `;
+    }
+
+    // Funções de curtidas e comentários
+    function curtir(btn) {
+      const countSpan = btn.querySelector('.like-count');
+      let count = parseInt(countSpan.textContent);
+      if (btn.dataset.liked === "true") { count--; btn.dataset.liked = "false"; }
+      else { count++; btn.dataset.liked = "true"; }
+      countSpan.textContent = count;
+    }
+
+    function descurtir(btn) {
+      const countSpan = btn.querySelector('.dislike-count');
+      let count = parseInt(countSpan.textContent);
+      if (btn.dataset.disliked === "true") { count--; btn.dataset.disliked = "false"; }
+      else { count++; btn.dataset.disliked = "true"; }
+      countSpan.textContent = count;
+    }
+
+    function mostrarComentarios(btn) {
+      const section = btn.closest('.video-info').querySelector('.comment-section');
+      section.style.display = section.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function compartilhar() { alert("Link copiado para compartilhar!"); }
+
+    function getValueOrDefault(id, defaultValue) {
+      const el = document.getElementById(id);
+      return el ? el.value.trim() || defaultValue : defaultValue;
+    }
+
+    
+
+    // Puxar vídeo salvo
     const videoURL = localStorage.getItem('videoURL');
     const description = localStorage.getItem('videoDescription');
-
     if (videoURL && description) {
       document.getElementById('videosContainer').innerHTML = `
         <div class="video-card">
@@ -186,48 +251,6 @@
         </div>
       `;
     }
-
-function curtir(btn) {
-  const countSpan = btn.querySelector('.like-count');
-  let count = parseInt(countSpan.textContent);
-
-  // Verifica se já está curtido
-  if (btn.dataset.liked === "true") {
-    count--;
-    btn.dataset.liked = "false";
-  } else {
-    count++;
-    btn.dataset.liked = "true";
-  }
-
-  countSpan.textContent = count;
-}
-
-function descurtir(btn) {
-  const countSpan = btn.querySelector('.dislike-count');
-  let count = parseInt(countSpan.textContent);
-
-  // Verifica se já está descurtido
-  if (btn.dataset.disliked === "true") {
-    count--;
-    btn.dataset.disliked = "false";
-  } else {
-    count++;
-    btn.dataset.disliked = "true";
-  }
-
-  countSpan.textContent = count;
-}
-
-    function mostrarComentarios(btn) {
-      const section = btn.closest('.video-info').querySelector('.comment-section');
-      section.style.display = section.style.display === 'block' ? 'none' : 'block';
-    }
-
-    function compartilhar() {
-      alert("Link copiado para compartilhar!");
-    }
   </script>
-
 </body>
-</html
+</html>
