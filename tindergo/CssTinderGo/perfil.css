@@ -1,0 +1,196 @@
+body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      background: #f5f7fa;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    /* Cabeçalho */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+.container-login100-form-btn {
+    display: flex;
+    justify-content: center;
+  }
+
+  .wrap-login100-form-btn {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .login100-form-bgbtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    border-radius: 30px;
+    box-shadow: 0 8px 20px rgba(255, 126, 179, 0.6);
+    transition: all 0.3s ease;
+    z-index: -1;
+  }
+
+  .login100-form-btn {
+    width: 100%;
+    padding: 14px 0;
+    background: transparent;
+    border: none;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .login100-form-btn:hover {
+    background-color: #ff5f8a;
+    box-shadow: 0 8px 20px rgba(255, 95, 138, 0.7);
+  }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .header span {
+      color: #666;
+    }
+
+    /* Card principal */
+    .profile-main {
+      display: flex;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .profile-main img {
+      width: 250px;
+      object-fit: cover;
+    }
+
+    .profile-details {
+      padding: 20px;
+      flex: 1;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .rating i {
+      color: gold;
+      margin-right: 2px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .info-item h3 {
+      font-size: 0.9rem;
+      color: #666;
+      margin: 0;
+    }
+
+    .info-item p {
+      font-size: 1rem;
+      margin: 3px 0 0;
+      font-weight: 500;
+    }
+
+    /* Painel lateral */
+    .side-panel {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .side-card {
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      flex: 1;
+      min-width: 250px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .side-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    /* Formulário e comentários */
+    #avaliacao-form,
+    #comentarios {
+      background: white;
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      margin-top: 20px;
+    }
+
+    #avaliacao-form label {
+      font-weight: 600;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    #avaliacao-form input,
+    #avaliacao-form textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    #avaliacao-form button {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      width: 100%;
+    }
+
+    #avaliacao-form button:hover {
+      background-color: #2563eb;
+    }
+
+    #comentarios h4 {
+      margin-top: 0;
+    }
+
+    .comentario {
+      border-bottom: 1px solid #eee;
+      padding: 8px 0;
+    }
+
+    .comentario:last-child {
+      border-bottom: none;
+    }

@@ -4,371 +4,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="CssTinderGo/styles.css" />
+  <link rel="stylesheet" href="CssTinderGo/mensagens.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon_io/favicon-32x32.png">
   <script src="https://kit.fontawesome.com/f9e19193d6.js" crossorigin="anonymous"></script>
   <title>Mensagens</title>
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      display: flex;
-      height: 100vh;
-      background: linear-gradient(135deg, #f0f3f7, #d9e2ec);
-      color: #333;
-      overflow: hidden;
-    }
-
-.nova {
-      display: flex;
-      justify-content: space-around;
-      padding: 15px 0;
-      background: linear-gradient(135deg, #000000, #020202);
-      /* degrade verde */
-      box-shadow:
-        inset 0 4px 8px rgba(255, 255, 255, 0.4),
-        0 5px 15px rgba(69, 182, 73, 0.6);
-      border-radius: 40px;
-      font-size: 1.4rem;
-      width: 90%;
-      max-width: 450px;
-      margin: 20px auto;
-      user-select: none;
-      transition: box-shadow 0.3s ease;
-      cursor: default;
-    }
-
-    .nova:hover {
-      box-shadow:
-        inset 0 6px 12px rgba(255, 255, 255, 0.7),
-        0 8px 25px rgba(69, 182, 73, 0.8);
-    }
-
-    .nova a {
-      color: #1b4d1b;
-      transition: color 0.3s ease, transform 0.2s ease;
-      padding: 8px 15px;
-      border-radius: 25px;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    /* Contatos */
-    .contatos {
-      width: 320px;
-      background: #fff;
-      border-right: 1px solid #ddd;
-      overflow-y: auto;
-      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
-      padding-top: 10px;
-      flex-shrink: 0;
-      transition: transform 0.3s ease;
-      z-index: 10;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Cada contato */
-    .contato {
-      padding: 12px 20px;
-      cursor: pointer;
-      border-bottom: 1px solid #f1f3f5;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      transition: background-color 0.25s ease;
-      font-weight: 500;
-      font-size: 1rem;
-      color: #2c3e50;
-      user-select: none;
-    }
-
-    .contato:hover {
-      background-color: #e3eaf5;
-      color: #1a237e;
-    }
-
-    .contato img.profile-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 0 5px rgba(26, 35, 126, 0.3);
-      flex-shrink: 0;
-    }
-
-    /* Chat geral */
-    .chat {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      background: #fefefe;
-      box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.03);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Cabeçalho do chat */
-    .chat-header {
-      background: #fff;
-      padding: 18px 25px;
-      border-bottom: 1px solid #ccc;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: #34495e;
-      display: flex;
-      align-items: center;
-      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-      position: relative;
-    }
-
-    /* Botão voltar no chat header (só aparece no mobile e tela pequena) */
-    #btnVoltar {
-      display: none;
-      cursor: pointer;
-      margin-right: 15px;
-      font-size: 1.3rem;
-      color: #2980b9;
-      background: none;
-      border: none;
-    }
-
-    #btnVoltar:hover {
-      color: #1c5d99;
-    }
-
-    .chat-header a {
-      text-decoration: none;
-      color: #34495e;
-      transition: color 0.3s ease;
-      flex-grow: 1;
-    }
-
-    .chat-header a:hover {
-      color: #2980b9;
-    }
-
-    /* Área das mensagens */
-    .mensagens {
-      flex: 1;
-      padding: 25px 30px;
-      overflow-y: auto;
-      background: #f5f7fa;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      scrollbar-width: thin;
-      scrollbar-color: #a0aec0 transparent;
-    }
-
-    /* Estilo das mensagens */
-    .mensagem {
-      max-width: 65%;
-      padding: 14px 18px;
-      border-radius: 18px;
-      background: #fff;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-      font-size: 0.95rem;
-      line-height: 1.4;
-      color: #2d3436;
-      word-wrap: break-word;
-      user-select: text;
-    }
-
-    .mensagem.eu {
-      align-self: flex-end;
-      background: #d1ffd6;
-      box-shadow: 0 2px 8px rgba(72, 187, 120, 0.4);
-    }
-
-    /* Área do input e botão */
-    .input-area {
-      display: flex;
-      padding: 15px 25px;
-      border-top: 1px solid #ddd;
-      background: #fff;
-    }
-
-    .input-area input {
-      flex: 1;
-      padding: 14px 20px;
-      border: 1.8px solid #ccc;
-      border-radius: 25px;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-      outline: none;
-      color: #2c3e50;
-    }
-
-    .input-area input:focus {
-      border-color: #2980b9;
-      box-shadow: 0 0 6px rgba(41, 128, 185, 0.4);
-    }
-
-    .input-area button {
-      margin-left: 15px;
-      padding: 14px 28px;
-      background-color: #2980b9;
-      border: none;
-      color: #fff;
-      font-weight: 600;
-      font-size: 1rem;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: background-color 0.25s ease;
-      box-shadow: 0 3px 7px rgba(41, 128, 185, 0.6);
-    }
-
-    .input-area button:hover {
-      background-color: #1c5d99;
-    }
-
-    /* Scrollbar customizada para webkit */
-    .mensagens::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .mensagens::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .mensagens::-webkit-scrollbar-thumb {
-      background-color: #a0aec0;
-      border-radius: 4px;
-    }
-
-    .nova a i {
-      color: #fff !important;
-      text-shadow:
-        -2px -2px 0 #000,
-        2px -2px 0 #000,
-        -2px 2px 0 #000,
-        2px 2px 0 #000,
-        0 0 5px rgba(255, 255, 255, 0.8);
-      transition: color 0.3s ease, transform 0.2s ease;
-    }
-
-   .nova a:hover {
-      color: #0d2a0d;
-      background: rgba(27, 77, 27, 0.15);
-      transform: scale(1.1);
-      box-shadow: 0 0 8px rgba(13, 42, 13, 0.7);
-    }
-
-    .nova a:hover i {
-      color: #ccf5ff;
-      transform: scale(1.1);
-      text-shadow:
-        -2px -2px 0 #000,
-        2px -2px 0 #000,
-        -2px 2px 0 #000,
-        2px 2px 0 #000,
-        0 0 10px rgba(204, 245, 255, 0.9);
-    }
-
-
-    
-
-    @media (max-width: 720px) {
-      body {
-      }
-
-      .contatos {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 100%;
-        max-width: 320px;
-        background: #fff;
-        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
-        transform: translateX(0);
-        transition: transform 0.3s ease;
-        z-index: 20;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .contatos.escondido {
-        transform: translateX(-100%);
-      }
-
-      .chat {
-        flex: 1;
-        width: 100%;
-        position: relative;
-      }
-
-      .chat.escondido {
-        display: none;
-      }
-
-      #btnVoltar {
-        display: inline-block;
-      }
-
-      .contatos {
-        border-right: none;
-        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
-      }
-
-      nav.nova {
-        position: sticky;
-        bottom: 0;
-        background-color: #222;
-      }
-    }
-  </style>
 </head>
 
 <body>
   <div class="contatos" id="contatos">
-
+    <br><br>
     <div class="contato" onclick="abrirConversa('Josue')">
       <img src="img/Homen1.jpg" alt="Josue" class="profile-icon" /> Josue
     </div>
-    <br />
-    <br />
+       <br><br>
     <div class="contato" onclick="abrirConversa('Bruno')">
       <img src="img/Homen2.jpg" class="profile-icon" alt="Bruno" /> Bruno
     </div>
-    <br />
-    <br />
+       <br><br>
     <div class="contato" onclick="abrirConversa('Davi')">
       <img src="img/homen3.jpg" class="profile-icon" alt="Davi" /> Davi
     </div>
-    <br />
-    <br />
+       <br><br>
     <div class="contato" onclick="abrirConversa('Diego')">
       <img src="img/goleiro.jpg" class="profile-icon" alt="Diego" /> Diego
     </div>
-    <br />
-    <br />
+       <br><br>
     <div class="contato" onclick="abrirConversa('Miguel')">
       <img src="img/homen4.jpg" class="profile-icon" alt="Miguel" /> Miguel
     </div>
-    <br />
-    <br />
+       <br><br>
     <div class="contato" onclick="abrirConversa('Fernanda')">
       <img src="img/mulher2.jpg" class="profile-icon" alt="Fernanda" /> Fernanda
     </div>
-    <br />
-    <br />
+       <br><br>
     <div class="contato" onclick="abrirConversa('Gabi')">
       <img src="img/mulher1.jpg" class="profile-icon" alt="Gabi" /> Gabi
     </div>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-
+       <br><br>
+   <br><br>
+      <br><br>
+         <br><br>
     <nav class="nova">
       <a href="Inicial-Video.html"><i class="fas fa-fire"></i></a>
       <a href="mensagens.html"><i class="fas fa-comments"></i></a>
@@ -378,7 +55,6 @@
 
   <div class="chat escondido" id="chat">
     <div class="chat-header" id="chatHeader">
-      <button id="btnVoltar" title="Voltar para contatos"><i class="fas fa-arrow-left"></i></button>
       Selecione um contato
     </div>
 
@@ -390,92 +66,6 @@
     </div>
   </div>
 
-  <script>
-    const contatosDiv = document.getElementById('contatos');
-    const chatDiv = document.getElementById('chat');
-    const chatHeader = document.getElementById('chatHeader');
-    const mensagensDiv = document.getElementById('mensagens');
-
-   
-    let contatoAtual = null;
-
-
-    function abrirConversa(nome) {
-      contatoAtual = nome;
-
-      chatHeader.innerHTML = `
-        <button id="btnVoltar" title="Voltar para contatos"><i class="fas fa-arrow-left"></i></button>
-        <a href="perfil.html?nome=${encodeURIComponent(nome)}">${nome}</a>
-      `;
-
-      
-      document.getElementById('btnVoltar').addEventListener('click', voltarParaContatos);
-
-      mensagensDiv.innerHTML = `<div class="mensagem">Conversa com <strong>${nome}</strong> iniciada.</div>`;
-
-      ajustarLayout();
-    }
-
-    function enviarMensagem() {
-      const input = document.getElementById('inputMensagem');
-      const texto = input.value.trim();
-      if (!texto) return;
-
-      const msg = document.createElement('div');
-      msg.className = 'mensagem eu';
-      msg.innerText = texto;
-      mensagensDiv.appendChild(msg);
-      input.value = '';
-      mensagensDiv.scrollTop = mensagensDiv.scrollHeight;
-    }
-
-   
-    function voltarParaContatos() {
-      contatoAtual = null;
-      ajustarLayout();
-   
-      chatHeader.innerHTML = 'Selecione um contato';
-    }
-
- 
-    function ajustarLayout() {
-      const largura = window.innerWidth;
-
-      if (largura > 720) {
-      
-        contatosDiv.classList.remove('escondido');
-        chatDiv.classList.remove('escondido');
-
-        if (!contatoAtual) {
-          chatHeader.innerHTML = 'Selecione um contato';
-          mensagensDiv.innerHTML = '';
-        }
-
-      } else {
-       
-
-        if (contatoAtual) {
-         
-          contatosDiv.classList.add('escondido');
-          chatDiv.classList.remove('escondido');
-        } else {
-        
-          contatosDiv.classList.remove('escondido');
-          chatDiv.classList.add('escondido');
-
-        
-          chatHeader.innerHTML = 'Selecione um contato';
-          mensagensDiv.innerHTML = '';
-        }
-      }
-    }
-
-    // Atualiza layout ao redimensionar
-    window.addEventListener('resize', ajustarLayout);
-
-    // Inicializa layout na carga da página
-    window.addEventListener('load', ajustarLayout);
-  </script>
+  <script src="jstindergo/mensagensgo.js"></script>
 </body>
-
 </html>
