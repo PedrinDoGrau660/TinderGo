@@ -14,47 +14,55 @@
 <body>
   <div class="contatos" id="contatos">
     <a href="pagina.html" class="back-arrow" title="Voltar">&#8592;</a>
-    <br> <br> <br>   <br> <br> 
+
+    <br><br><br><br><br>
 
     <div class="contato" id="Mariana" onclick="abrirConversa('Mariana')">
-      <img src="img/mulher1.jpg" alt="Mariana" class="profile-icon" /> Mariana
+      <img src="img/mulher1.jpg" alt="Mariana" class="profile-icon" />
+      <span>Mariana</span>
     </div>
-   <br> <br> 
+
     <div class="contato" id="Lucas" onclick="abrirConversa('Lucas')">
-      <img src="img/veio.jpg" alt="Lucas" class="profile-icon" /> Lucas
+      <img src="img/veio.jpg" alt="Lucas" class="profile-icon" />
+      <span>Lucas</span>
     </div>
-   <br> <br> 
+
     <div class="contato" id="Camila" onclick="abrirConversa('Camila')">
-<<<<<<< HEAD
-      <img src="img/mulher.jpg" alt="Camila" class="profile-icon" /> Camilla
-=======
-      <img src="img/mulher.jpg" alt="Camila" class="profile-icon" /> Camila
->>>>>>> b7b6ea3 (Atualização do projeto)
+      <img src="img/mulher.jpg" alt="Camila" class="profile-icon" />
+      <span>Camila</span>
     </div>
-   <br> <br> 
+
     <div class="contato" id="Rafael" onclick="abrirConversa('Rafael')">
-      <img src="img/homen4.jpg" alt="Rafael" class="profile-icon" /> Rafael
+      <img src="img/homen4.jpg" alt="Rafael" class="profile-icon" />
+      <span>Rafael</span>
     </div>
-   <br> <br> 
+
     <div class="contato" id="Gabriel" onclick="abrirConversa('Gabriel')">
-      <img src="img/homen3.jpg" alt="Gabriel" class="profile-icon" /> Gabriel
+      <img src="img/homen3.jpg" alt="Gabriel" class="profile-icon" />
+      <span>Gabriel</span>
     </div>
-   <br> <br> 
+
     <div class="contato" id="Pedro" onclick="abrirConversa('Pedro')">
-      <img src="img/homen2.jpg" alt="Pedro" class="profile-icon" /> Pedro
+      <img src="img/homen2.jpg" alt="Pedro" class="profile-icon" />
+      <span>Pedro</span>
     </div>
-   <br> <br> 
+
     <div class="contato" id="Thiago" onclick="abrirConversa('Thiago')">
-      <img src="img/homen1.jpg" alt="Thiago" class="profile-icon" /> Thiago
+      <img src="img/homen1.jpg" alt="Thiago" class="profile-icon" />
+      <span>Thiago</span>
     </div>
   </div>
 
   <div class="chat escondido" id="chat">
     <div class="chat-header" id="chatHeader">
-      <button id="btnVoltar" title="Voltar para contatos"><i class="fas fa-arrow-left"></i></button>
-      Selecione um contato
+      <button id="btnVoltar" title="Voltar para contatos">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <span id="nomeContato">Selecione um contato</span>
     </div>
+
     <div class="mensagens" id="mensagens"></div>
+
     <div class="input-area">
       <input type="text" id="inputMensagem" placeholder="Digite sua mensagem..." />
       <button onclick="enviarMensagem()">Enviar</button>
@@ -62,7 +70,6 @@
   </div>
 
   <script src="jsjogador/mensagemjogador.js"></script>
-
 </body>
 
 </html>
