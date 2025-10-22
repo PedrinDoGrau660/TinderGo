@@ -289,3 +289,21 @@ body {
   border-radius: 25px;
   pointer-events: none;
 }
+ .back-arrow {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 26px;
+      color: #1C86EE;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 50%;
+      transition: background 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .back-arrow:hover {
+      background: rgba(230, 230, 230, 0.95);
+    }
